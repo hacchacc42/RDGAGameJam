@@ -6,10 +6,8 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [System.Serializable]
-    public class myIntEvent : UnityEvent<int>
-    { }
     public myIntEvent Event_UpdateHP;
+    public myIntEvent Event_UpdateMaxHP;
     public int maxHealth = 100;
     [SerializeField]
     int health;
@@ -17,10 +15,23 @@ public class Health : MonoBehaviour
     int healthRegen;
     [SerializeField]
     float healthRegenTime = 2f;
+    [Header("Extra Stats")]
+    [SerializeField]
+    int luck;
+    [SerializeField]
+    int dodgeChance = 5;
 
     private void Start()
     {
         health = maxHealth;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            ChangeHP(-20);
+        }
     }
 
     private void OnEnable()
@@ -44,14 +55,32 @@ public class Health : MonoBehaviour
     }
 
 
+    public void UpdateMaxHealth(int nMaxHealth)
+    {
+        int tempHP = nMaxHealth - maxHealth;
+        maxHealth = nMaxHealth;
+        ChangeHP(nMaxHealth);
+        Event_UpdateMaxHP.Invoke(maxHealth);
+    }
+    public void UpdateHealthRegen(int nHealthRegen)
+    {
+        healthRegen = nHealthRegen;
+    }
+
     public void ChangeHP(int ammount)
     {
+        if (ammount < 0)
+        {
+            if ((dodgeChance + (luck / 2)) >= Random.Range(0, 100)) // Dodge
+                return;
+        }
         health += ammount;
-        Event_UpdateHP.Invoke(health);
         if (health > maxHealth)
         {
             health = maxHealth;
+            return;
         }
+        Event_UpdateHP.Invoke(health);
         if (health <= 0)
         {
             gameObject.SetActive(false);

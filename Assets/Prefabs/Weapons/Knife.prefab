@@ -48,13 +48,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: -890294684, guid: d4822347c1450fc4f9a336da59010c12, type: 3}
+  itenName: Iron Dagger
+  bonus: 
+  itemType: 7
+  rarity: 0
+  maxHealth: 0
+  regenHealth: 0
+  attackDamage: 0
+  damage: 5
+  projectileSpeed: 20
+  attackSpeed: 3
+  range: 0.25
+  critChance: 0
+  critDamage: 0
+  lifeSteal: 0
+  movementSpeed: 0
+  dodgeChance: 0
+  luck: 0
   prefab: {fileID: 2405032551919141211, guid: 4db5e2f74b811f3458874f9efb55126a, type: 3}
   throwParent: {fileID: 0}
   audioSource: {fileID: -2410528718705670478}
-  attackSpeed: 3
-  damage: 5
-  projectileSpeed: 20
-  range: 0.25
 --- !u!114 &4950819567886386430
 MonoBehaviour:
   m_ObjectHideFlags: 0

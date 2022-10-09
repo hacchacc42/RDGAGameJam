@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
@@ -13,12 +14,18 @@ public class HealthBar : MonoBehaviour
     GameObject player;
     [SerializeField]
     Image hpBar;
+    [SerializeField]
+    TMP_Text currentHPText;
+    [SerializeField]
+    TMP_Text maxHPText;
+
     float currenthealth;
     float newHealth;
     float timer = 0;
     private void Start()
     {
         player.GetComponent<Health>().Event_UpdateHP.AddListener(UpdateBar);
+        player.GetComponent<Health>().Event_UpdateMaxHP.AddListener(UpdateMaxHp);
         currenthealth = 1;
         newHealth = maxHealth;
         currenthealth = newHealth;
@@ -30,7 +37,13 @@ public class HealthBar : MonoBehaviour
         timer = 0;
         currenthealth = hpBar.fillAmount;
         newHealth=hp;
+        if(currentHPText!=null)
+            currentHPText.text = hp.ToString();
+    }
 
+    void UpdateMaxHp(int maxHP)
+    {
+        maxHPText.text = maxHP.ToString();
     }
 
     private void Update()

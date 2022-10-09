@@ -12,23 +12,40 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     Shop shop;
 
-    public void AddWeapon(GameObject weapon)
+    public void AddItem(Item item)
     {
-        for (int i = 0; i < weaponSlots.Length; i++)
-        {    
-            if (weaponSlots[i].transform.childCount == 0)
-            {
-                ModifyItem(i, weapon);
-                return;
-            }
+        switch(item.itemType)
+        {
+            case ItemType.Weapon:
+                if (AddWeapon(item))
+                    return;
+                break;
+            default:
+                break;
         }
-        GameManager.instance.itemToHold = weapon;
+
+        if (AddWeapon(item))
+            return;
+        GameManager.instance.itemToHold = item;
         shop.InventoryFull();
     }
 
-    void ModifyItem(int slot, GameObject weapon)
+    bool AddWeapon(Item weapon)
     {
-        GameObject temp = Instantiate(weapon);
+        for (int i = 0; i < weaponSlots.Length; i++)
+        {
+            if (weaponSlots[i].transform.childCount == 0)
+            {
+                ModifyWeapon(i, weapon);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void ModifyWeapon(int slot, Item item)
+    {
+        GameObject temp = Instantiate(item.gameObject);
         temp.transform.SetParent(weaponSlots[slot].transform, false);
         weaponImages[slot].sprite = temp.GetComponent<Throwable>().image;
         weaponImages[slot].enabled = true;
@@ -39,6 +56,6 @@ public class Inventory : MonoBehaviour
     public void ChangeItem(int slot)
     {
         Destroy(weaponSlots[slot].transform.GetChild(0).gameObject);
-        ModifyItem(slot, GameManager.instance.itemToHold);
+        ModifyWeapon(slot, GameManager.instance.itemToHold);
     }
 }

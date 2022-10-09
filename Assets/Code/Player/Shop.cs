@@ -7,9 +7,9 @@ public class Shop : MonoBehaviour
     [SerializeField]
     GameObject changingWindow;
     [SerializeField]
-    Throwable[] weapons;
+    Item[] items;
     [SerializeField]
-    ShopWeapon[] shopWeapons;
+    ShopItems[] shopItems;
 
     private void OnEnable()
     {
@@ -19,9 +19,9 @@ public class Shop : MonoBehaviour
 
     public void GenerateNewWeapons()
     {
-        foreach(var shopWeapon in shopWeapons)
+        foreach(var shopItem in shopItems)
         {
-            shopWeapon.ReceiveItem(weapons[Random.Range(0, weapons.Length)]);
+            shopItem.ReceiveItem(items[Random.Range(0, items.Length)]);
         }
     }
     public void InventoryFull()

@@ -201,10 +201,15 @@ MonoBehaviour:
   Event_UpdateHP:
     m_PersistentCalls:
       m_Calls: []
+  Event_UpdateMaxHP:
+    m_PersistentCalls:
+      m_Calls: []
   maxHealth: 600
   health: 0
-  healthRegen: 3
+  healthRegen: 2
   healthRegenTime: 0.1
+  luck: 0
+  dodgeChance: 5
 --- !u!95 &2909735965481704623
 Animator:
   serializedVersion: 4

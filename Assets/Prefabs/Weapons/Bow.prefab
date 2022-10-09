@@ -48,13 +48,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1503354287, guid: d4822347c1450fc4f9a336da59010c12, type: 3}
+  itenName: Shortbow
+  bonus: 
+  itemType: 7
+  rarity: 0
+  maxHealth: 0
+  regenHealth: 0
+  attackDamage: 0
+  damage: 40
+  projectileSpeed: 20
+  attackSpeed: 0.33
+  range: 0.5
+  critChance: 0
+  critDamage: 0
+  lifeSteal: 0
+  movementSpeed: 0
+  dodgeChance: 0
+  luck: 0
   prefab: {fileID: 2405032551919141211, guid: 820a97c3bcbe4fd4f9ca7f4d820efb4f, type: 3}
   throwParent: {fileID: 0}
   audioSource: {fileID: 1347792663322350437}
-  attackSpeed: 0.33
-  damage: 40
-  projectileSpeed: 20
-  range: 0.5
 --- !u!114 &4950819567886386430
 MonoBehaviour:
   m_ObjectHideFlags: 0

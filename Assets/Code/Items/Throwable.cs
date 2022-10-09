@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Throwable : MonoBehaviour
+public class Throwable : Item
 {
-    public Sprite image;
+    [Header("Throwable")]
     [SerializeField]
     Projectile prefab;
     Queue<Projectile> weaponsQueue;
@@ -12,15 +12,6 @@ public class Throwable : MonoBehaviour
     GameObject throwParent;
     [SerializeField]
     AudioSource audioSource;
-    [Header("Stats")]
-    [SerializeField]
-    float attackSpeed;
-    [SerializeField]
-    int damage;
-    [SerializeField]
-    float projectileSpeed;
-    [SerializeField]
-    float range;
     private void OnEnable()
     {
         throwParent = new GameObject("Throw parent");

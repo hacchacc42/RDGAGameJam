@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopWeapon : MonoBehaviour
+public class ShopItems : MonoBehaviour
 {
     [SerializeField]
-    GameObject weapon;
+    Item item;
     [SerializeField]
     Inventory inventoy;
     [SerializeField]
     Image image;
 
-    public void ReceiveItem(Throwable weapon)
+    public void ReceiveItem(Item item)
     {
-        this.weapon = weapon.gameObject;
-        image.sprite = weapon.image;
+        this.item = item;
+        image.sprite = item.image;
     }
 
     public void TryAddWeapon()
     {
-        inventoy.AddWeapon(weapon);
+        inventoy.AddItem(item);
     }
 }

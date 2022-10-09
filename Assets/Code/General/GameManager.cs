@@ -6,13 +6,34 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+public enum ItemType
+{
+    Helmet,
+    Chestplate,
+    Leggings,
+    Boots,
+    Ring,
+    Belt,
+    Neck,
+    Weapon
+}
+
+public enum Rarity
+{
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public EnemyPool enemyPool;
     public Shop shop;
 
-    public GameObject itemToHold;
+    public Item itemToHold;
     public GameObject healhPotionPrefab;
 
     public float audioSetting;

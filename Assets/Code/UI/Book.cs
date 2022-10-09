@@ -6,8 +6,12 @@ public class Book : MonoBehaviour
 {
     [SerializeField]
     GameObject books;
+    [SerializeField]
+    bool endingBook = false;
     private void OnEnable()
     {
+        if (endingBook)
+            return;
         Time.timeScale = 0;
     }
 
