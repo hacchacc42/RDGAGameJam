@@ -172,6 +172,8 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 400
   health: 0
+  healthRegen: 1
+  healthRegenTime: 0.2
 --- !u!95 &2909735965481704623
 Animator:
   serializedVersion: 4

@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
-        range = initialRange;// * GameManager.instance.rangeMultiplier;
+        range = initialRange;
     }
     private void Update()
     {
@@ -26,6 +26,13 @@ public class Projectile : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void SetStats(int newDamage, float newRange, float newSpeed)
+    {
+        damage = newDamage;
+        initialRange = newRange;
+        speed = newSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,13 +49,9 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject?.GetComponent<Health>().
                 ChangeHP(
-                    -damage //? -(int)(GameManager.instance.damageMultiplier * damage) : -damage
+                    -damage
                 );
         }
         gameObject.SetActive(false);
-    }
-    private void OnDisable()
-    {
-        range = .5f;
     }
 }

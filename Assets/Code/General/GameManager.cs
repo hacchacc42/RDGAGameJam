@@ -39,9 +39,6 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public int numberOfEnemies = 0;
     public int waveTimer = 0;
-    public float attackSpeedMultiplier;
-    public float damageMultiplier;
-    public float rangeMultiplier;
     
     [Header("Levels")]
     public int level = 0;

@@ -48,10 +48,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1621920723, guid: d4822347c1450fc4f9a336da59010c12, type: 3}
-  prefab: {fileID: 2405032551919141212, guid: f5bd7dddd89839c4ab9f1acfcd365cdd, type: 3}
-  attackSpeed: 0.5
+  prefab: {fileID: 2405032551919141211, guid: f5bd7dddd89839c4ab9f1acfcd365cdd, type: 3}
   throwParent: {fileID: 0}
   audioSource: {fileID: 7837552040894661032}
+  attackSpeed: 0.5
+  damage: 30
+  projectileSpeed: 10
+  range: 1
 --- !u!114 &4950819567886386430
 MonoBehaviour:
   m_ObjectHideFlags: 0

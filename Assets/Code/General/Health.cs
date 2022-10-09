@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,11 +13,36 @@ public class Health : MonoBehaviour
     public int maxHealth = 100;
     [SerializeField]
     int health;
+    [SerializeField]
+    int healthRegen;
+    [SerializeField]
+    float healthRegenTime = 2f;
 
     private void Start()
     {
         health = maxHealth;
     }
+
+    private void OnEnable()
+    {
+        if(healthRegen>0)
+        {
+            StartCoroutine(HealthRegen());
+        }
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
+    IEnumerator HealthRegen()
+    {
+        ChangeHP(healthRegen);
+        yield return new WaitForSeconds(healthRegenTime);
+        StartCoroutine(HealthRegen());
+    }
+
 
     public void ChangeHP(int ammount)
     {

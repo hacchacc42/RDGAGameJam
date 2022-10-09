@@ -6,24 +6,31 @@ public class Throwable : MonoBehaviour
 {
     public Sprite image;
     [SerializeField]
-    GameObject prefab;
-    Queue<GameObject> weaponsQueue;
-    [Header("Stats")]
-    [SerializeField]
-    float attackSpeed;
+    Projectile prefab;
+    Queue<Projectile> weaponsQueue;
     [SerializeField]
     GameObject throwParent;
     [SerializeField]
     AudioSource audioSource;
+    [Header("Stats")]
+    [SerializeField]
+    float attackSpeed;
+    [SerializeField]
+    int damage;
+    [SerializeField]
+    float projectileSpeed;
+    [SerializeField]
+    float range;
     private void OnEnable()
     {
         throwParent = new GameObject("Throw parent");
-        weaponsQueue = new Queue<GameObject>();
+        weaponsQueue = new Queue<Projectile>();
         for (int i = 0; i < 10; i++)
         {
-            GameObject temp = Instantiate(prefab);
+            Projectile temp = Instantiate(prefab);
             temp.transform.SetParent(throwParent.transform, false);
-            temp.SetActive(false);
+            temp.gameObject.SetActive(false);
+            temp.SetStats(damage, range, projectileSpeed);
             weaponsQueue.Enqueue(temp);
         }
         StartCoroutine(C_Throwing());
@@ -32,12 +39,12 @@ public class Throwable : MonoBehaviour
     IEnumerator C_Throwing()
     {
         PlayAudio();
-        GameObject temp = weaponsQueue.Dequeue();
+        Projectile temp = weaponsQueue.Dequeue();
         temp.transform.position = transform.position;
         temp.transform.rotation = transform.rotation;
-        temp.SetActive(true);
+        temp.gameObject.SetActive(true);
         weaponsQueue.Enqueue(temp);
-        yield return new WaitForSeconds( 1.0f/(attackSpeed * GameManager.instance.attackSpeedMultiplier));
+        yield return new WaitForSeconds(1.0f / attackSpeed);
         StartCoroutine(C_Throwing());
     }
     private void OnDisable()
