@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Winning()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("Main Menu");
     }
 
