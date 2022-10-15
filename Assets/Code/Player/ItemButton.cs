@@ -7,11 +7,11 @@ public class ItemButton : MonoBehaviour
     [SerializeField]
     Inventory inventory;
 
-    public void ChangeItem(int id)
+    public void ChangeWeapon(int id)
     {
         if (GameManager.instance.itemToHold != null)
         {
-            inventory.ChangeItem(id);
+            inventory.ChangeWeapon(id);
         }
     }
 }

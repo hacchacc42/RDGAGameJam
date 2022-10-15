@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour
     {
         shop.gameObject.SetActive(false);
         Time.timeScale = 1;
+        itemToHold = null;
     }
     
 

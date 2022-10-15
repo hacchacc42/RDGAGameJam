@@ -56,9 +56,9 @@ MonoBehaviour:
   regenHealth: 0
   attackDamage: 0
   damage: 5
-  projectileSpeed: 20
-  attackSpeed: 3
-  range: 0.25
+  projectileSpeed: 15
+  attackSpeed: 1.5
+  range: 0.5
   critChance: 0
   critDamage: 0
   lifeSteal: 0

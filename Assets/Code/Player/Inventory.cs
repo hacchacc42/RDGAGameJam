@@ -12,50 +12,46 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     Shop shop;
 
-    public void AddItem(Item item)
+    public void AddItem()
     {
-        switch(item.itemType)
+        if(GameManager.instance.itemToHold.itemType == ItemType.Weapon)
         {
-            case ItemType.Weapon:
-                if (AddWeapon(item))
-                    return;
-                break;
-            default:
-                break;
+            if (AddWeapon())
+                return;
         }
+        else
+        {
 
-        if (AddWeapon(item))
-            return;
-        GameManager.instance.itemToHold = item;
+        }
         shop.InventoryFull();
     }
 
-    bool AddWeapon(Item weapon)
+    bool AddWeapon()
     {
-        for (int i = 0; i < weaponSlots.Length; i++)
+        for (int i = 0; i < weaponImages.Length; i++)
         {
-            if (weaponSlots[i].transform.childCount == 0)
+            if (weaponImages[i].GetComponent<Image>().enabled == false)
             {
-                ModifyWeapon(i, weapon);
+                ChangeWeapon(i);
                 return true;
             }
         }
         return false;
     }
 
-    void ModifyWeapon(int slot, Item item)
+    void ModifyItem(int slot)
     {
-        GameObject temp = Instantiate(item.gameObject);
-        temp.transform.SetParent(weaponSlots[slot].transform, false);
-        weaponImages[slot].sprite = temp.GetComponent<Throwable>().image;
+        weaponImages[slot].sprite = GameManager.instance.itemToHold.GetComponent<Throwable>().image;
         weaponImages[slot].enabled = true;
         GameManager.instance.CloseShop();
-        GameManager.instance.itemToHold = null;
     }
 
-    public void ChangeItem(int slot)
+    public void ChangeWeapon(int slot)
     {
-        Destroy(weaponSlots[slot].transform.GetChild(0).gameObject);
-        ModifyWeapon(slot, GameManager.instance.itemToHold);
+        if (weaponSlots[slot].transform.childCount>0)
+            Destroy(weaponSlots[slot].transform.GetChild(0).gameObject);
+        GameObject temp = Instantiate(GameManager.instance.itemToHold.gameObject);
+        temp.transform.SetParent(weaponSlots[slot].transform, false);
+        ModifyItem(slot);
     }
 }

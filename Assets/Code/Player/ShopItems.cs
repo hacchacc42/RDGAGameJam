@@ -20,6 +20,7 @@ public class ShopItems : MonoBehaviour
 
     public void TryAddWeapon()
     {
-        inventoy.AddItem(item);
+        GameManager.instance.itemToHold = item;
+        inventoy.AddItem();
     }
 }
