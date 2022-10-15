@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class Item : MonoBehaviour
 {
     public Sprite image;
-
-    public string itemName;
     [TextArea]
     public string bonus;
 

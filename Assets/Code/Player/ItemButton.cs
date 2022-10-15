@@ -9,7 +9,7 @@ public class ItemButton : MonoBehaviour
     [SerializeField]
     ItemType itemType;
 
-    public void ChangeWeapon(int id)
+    public void ChangeItem(int id)
     {
         if (GameManager.instance.itemToHold == null)
             return;

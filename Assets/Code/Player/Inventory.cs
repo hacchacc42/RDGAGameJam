@@ -7,11 +7,22 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    [Header("Weapons")]
     public GameObject[] weaponSlots;
     [SerializeField]
     Image[] weaponImages;
+    [Header("Armor")]
     [SerializeField]
     Image[] chestplateImage;
+    [SerializeField]
+    Image[] helmetImage;
+    [SerializeField]
+    Image[] leggingsImage;
+    [SerializeField]
+    Image[] bootsImage;
+    [SerializeField]
+    Image[] ringImages;
+    [Header("Misc")]
     [SerializeField]
     Shop shop;
     [SerializeField]
@@ -30,7 +41,22 @@ public class Inventory : MonoBehaviour
                 if (AddArmor(chestplateImage))
                     return;
                 break;
-
+            case ItemType.Helmet:
+                if (AddArmor(helmetImage))
+                    return;
+                break;
+            case ItemType.Leggings:
+                if (AddArmor(leggingsImage))
+                    return;
+                break;
+            case ItemType.Boots:
+                if (AddArmor(bootsImage))
+                    return;
+                break;
+            case ItemType.Ring:
+                if (AddArmor(ringImages))
+                    return;
+                break;
             default:
                 break;
         }
@@ -39,7 +65,7 @@ public class Inventory : MonoBehaviour
     void ModifyItem(Image targetImage)
     {
         targetImage.sprite = GameManager.instance.itemToHold.GetComponent<Item>().image;
-        targetImage.name = GameManager.instance.itemToHold.GetComponent<Item>().itemName;
+        targetImage.name = GameManager.instance.itemToHold.GetComponent<Item>().name;
         targetImage.enabled = true;
         _targetImages = null;
         GameManager.instance.CloseShop();
