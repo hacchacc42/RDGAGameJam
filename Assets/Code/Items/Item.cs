@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
 {
     public Sprite image;
 
-    public string itenName;
+    public string itemName;
     [TextArea]
     public string bonus;
 

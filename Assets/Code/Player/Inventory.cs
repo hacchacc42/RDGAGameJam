@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
@@ -10,20 +11,71 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     Image[] weaponImages;
     [SerializeField]
+    Image[] chestplateImage;
+    [SerializeField]
     Shop shop;
+    [SerializeField]
+    Stats playerStats;
+    Image[] _targetImages;
 
     public void AddItem()
     {
-        if(GameManager.instance.itemToHold.itemType == ItemType.Weapon)
+        switch(GameManager.instance.itemToHold.itemType)
         {
-            if (AddWeapon())
-                return;
-        }
-        else
-        {
+            case ItemType.Weapon:
+                if (AddWeapon())
+                    return;
+                break;
+            case ItemType.Chestplate:
+                if (AddArmor(chestplateImage))
+                    return;
+                break;
 
+            default:
+                break;
         }
         shop.InventoryFull();
+    }
+    void ModifyItem(Image targetImage)
+    {
+        targetImage.sprite = GameManager.instance.itemToHold.GetComponent<Item>().image;
+        targetImage.name = GameManager.instance.itemToHold.GetComponent<Item>().itemName;
+        targetImage.enabled = true;
+        _targetImages = null;
+        GameManager.instance.CloseShop();
+    }
+
+    bool AddArmor(Image[] targetItemImgs)
+    {
+        _targetImages = targetItemImgs;
+        for (int i = 0; i < targetItemImgs.Length; i++)
+        {
+            if(targetItemImgs[i].enabled == false)
+            {
+                ChangeArmor(i);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void ChangeArmor(int slot)
+    {
+        var item = GameManager.instance.itemToHold;
+        playerStats.UpdateHealthValues(item.maxHealth,item.regenHealth);
+        playerStats.UpdateUtilityValues(item.movementSpeed,item.dodgeChance,item.luck);
+        playerStats.UpdateDamageValues(item.attackDamage,item.attackSpeed,item.critChance,item.critDamage,item.lifeSteal);
+        if (_targetImages[slot].enabled == true)
+            RemoveItem(shop.GetItem(_targetImages[slot].name));
+        ModifyItem(_targetImages[slot]);
+    }
+    
+    void RemoveItem(Item item)
+    {
+        playerStats.UpdateHealthValues(-item.maxHealth, -item.regenHealth);
+        playerStats.UpdateUtilityValues(-item.movementSpeed, -item.dodgeChance, -item.luck);
+        playerStats.UpdateDamageValues(-item.attackDamage, -item.attackSpeed, -item.critChance, -item.critDamage, -item.lifeSteal);
     }
 
     bool AddWeapon()
@@ -36,14 +88,8 @@ public class Inventory : MonoBehaviour
                 return true;
             }
         }
-        return false;
-    }
 
-    void ModifyItem(int slot)
-    {
-        weaponImages[slot].sprite = GameManager.instance.itemToHold.GetComponent<Throwable>().image;
-        weaponImages[slot].enabled = true;
-        GameManager.instance.CloseShop();
+        return false;
     }
 
     public void ChangeWeapon(int slot)
@@ -52,6 +98,6 @@ public class Inventory : MonoBehaviour
             Destroy(weaponSlots[slot].transform.GetChild(0).gameObject);
         GameObject temp = Instantiate(GameManager.instance.itemToHold.gameObject);
         temp.transform.SetParent(weaponSlots[slot].transform, false);
-        ModifyItem(slot);
+        ModifyItem(weaponImages[slot]);
     }
 }

@@ -28,4 +28,23 @@ public class Shop : MonoBehaviour
     {
         changingWindow.SetActive(true);
     }
+
+    private void OnDisable()
+    {
+        changingWindow.SetActive(false);
+    }
+
+    public Item GetItem(string itemName)
+    {
+        for(int i=0; i < items.Length; i++)
+        {
+            if (items[i].itemName==itemName)
+            {
+                Debug.Log("Amongus");
+                return items[i];
+            }
+        }
+        return null;
+    }
+
 }

@@ -43,6 +43,7 @@ public class HealthBar : MonoBehaviour
 
     void UpdateMaxHp(int maxHP)
     {
+        maxHealth = maxHP;
         maxHPText.text = maxHP.ToString();
     }
 

@@ -59,7 +59,7 @@ public class Health : MonoBehaviour
     {
         int tempHP = nMaxHealth - maxHealth;
         maxHealth = nMaxHealth;
-        ChangeHP(nMaxHealth);
+        ChangeHP(tempHP);
         Event_UpdateMaxHP.Invoke(maxHealth);
     }
     public void UpdateHealthRegen(int nHealthRegen)

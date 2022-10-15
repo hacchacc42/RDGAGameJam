@@ -18,7 +18,7 @@ public class ShopItems : MonoBehaviour
         image.sprite = item.image;
     }
 
-    public void TryAddWeapon()
+    public void TryAddItem()
     {
         GameManager.instance.itemToHold = item;
         inventoy.AddItem();

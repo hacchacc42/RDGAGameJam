@@ -23,7 +23,7 @@ public class Stats : MonoBehaviour
 
     [Header("Damage")]
     public int attackDamage;
-    public int attackSpeed;
+    public float attackSpeed;
     public int critChance;
     public int critDamage;
     public int lifeSteal;
@@ -51,13 +51,6 @@ public class Stats : MonoBehaviour
 
 
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            UpdateHealthValues(0, 10);
-        }
-    }
 
     public void UpdateHealthValues(int cMaxHealth, int cRegenHealth)
     {
@@ -76,7 +69,7 @@ public class Stats : MonoBehaviour
 
     }
 
-    public void UpdateDamageValues(int cAttackDamage, int cAttackSpeed, int cCritChance, int cCritDamage, int cLifeSteal)
+    public void UpdateDamageValues(int cAttackDamage, float cAttackSpeed, int cCritChance, int cCritDamage, int cLifeSteal)
     {
         attackDamage += cAttackDamage;
         attackSpeed += cAttackSpeed;

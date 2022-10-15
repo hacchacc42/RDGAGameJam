@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4950819567886386430}
   - component: {fileID: 1347792663322350437}
   m_Layer: 0
-  m_Name: Bow
+  m_Name: Shortbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1503354287, guid: d4822347c1450fc4f9a336da59010c12, type: 3}
-  itenName: Shortbow
+  itemName: Shortbow
   bonus: 
   itemType: 7
   rarity: 0
