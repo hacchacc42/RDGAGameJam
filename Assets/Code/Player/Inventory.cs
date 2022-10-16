@@ -20,8 +20,17 @@ public class Inventory : MonoBehaviour
     Image[] leggingsImage;
     [SerializeField]
     Image[] bootsImage;
+    [Header("Accesories")]
     [SerializeField]
     Image[] ringImages;
+    [SerializeField]
+    Image[] gloveImage;
+    [SerializeField]
+    Image[] beltImage;
+    [SerializeField]
+    Image[] cloakImage;
+    [SerializeField]
+    Image[] neckImage;
     [Header("Misc")]
     [SerializeField]
     Shop shop;
@@ -57,6 +66,22 @@ public class Inventory : MonoBehaviour
                 if (AddArmor(ringImages))
                     return;
                 break;
+            case ItemType.Gloves:
+                if (AddArmor(gloveImage))
+                    return;
+                break;
+            case ItemType.Belt:
+                if (AddArmor(beltImage))
+                    return;
+                break;
+            case ItemType.Cloak:
+                if (AddArmor(cloakImage))
+                    return;
+                break;
+            case ItemType.Neck:
+                if (AddArmor(neckImage))
+                    return;
+                break;
             default:
                 break;
         }
@@ -67,7 +92,9 @@ public class Inventory : MonoBehaviour
         targetImage.sprite = GameManager.instance.itemToHold.GetComponent<Item>().image;
         targetImage.name = GameManager.instance.itemToHold.GetComponent<Item>().name;
         targetImage.enabled = true;
+        GameManager.instance.itemToHold.GetComponent<Item>().SetBackgroundColor(targetImage.transform.parent.GetComponent<Image>());
         _targetImages = null;
+
         GameManager.instance.CloseShop();
     }
 
@@ -124,6 +151,18 @@ public class Inventory : MonoBehaviour
             Destroy(weaponSlots[slot].transform.GetChild(0).gameObject);
         GameObject temp = Instantiate(GameManager.instance.itemToHold.gameObject);
         temp.transform.SetParent(weaponSlots[slot].transform, false);
+        temp.GetComponent<Item>().UpdateItemStats();
         ModifyItem(weaponImages[slot]);
+    }
+
+    public void UpdateWeaponValues()
+    {
+        for(int i=0;i<weaponSlots.Length;i++)
+        {
+            if(weaponSlots[i].transform.childCount>0)
+            {
+                weaponSlots[i].transform.GetChild(0).GetComponent<Item>().UpdateItemStats();
+            }
+        }
     }
 }

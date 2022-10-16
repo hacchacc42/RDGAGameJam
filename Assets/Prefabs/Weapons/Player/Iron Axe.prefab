@@ -47,24 +47,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15d27391964fb146909ae1a35a87bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerItem: 1
   image: {fileID: 1621920723, guid: d4822347c1450fc4f9a336da59010c12, type: 3}
-  itemName: Iron Axe
   bonus: 
-  itemType: 7
+  itemType: 9
   rarity: 0
   maxHealth: 0
+  initialMaxHealh: 0
   regenHealth: 0
+  initialRegenHealth: 0
   attackDamage: 0
+  initialAttackDamage: 0
   damage: 15
+  initialDamage: 15
   projectileSpeed: 9
+  initialProjectileSpeed: 9
   attackSpeed: 0.5
+  initialAttackSpeed: 0.5
   range: 0.8
+  initialRange: 0.8
   critChance: 0
+  initialCritChance: 0
   critDamage: 0
+  initialCritDamage: 0
   lifeSteal: 0
+  initialLifeSteal: 0
   movementSpeed: 0
+  initialMovementSpeed: 0
   dodgeChance: 0
+  initialDodgeChance: 0
   luck: 0
+  initialLuck: 0
   prefab: {fileID: 2405032551919141211, guid: f5bd7dddd89839c4ab9f1acfcd365cdd, type: 3}
   throwParent: {fileID: 0}
   audioSource: {fileID: 7837552040894661032}

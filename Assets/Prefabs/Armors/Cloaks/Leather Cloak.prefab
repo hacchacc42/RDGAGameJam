@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5194039219379788408}
   - component: {fileID: 8098139098106687709}
   m_Layer: 0
-  m_Name: Leather Boots
+  m_Name: Leather Cloak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,12 +47,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerItem: 1
-  image: {fileID: 21300000, guid: 272b1cbeba3633d46a0e4b797dea1254, type: 3}
+  image: {fileID: 21300000, guid: 92dfa74ad5e7929459cd6e3de9ac11f9, type: 3}
   bonus: 
-  itemType: 3
-  rarity: 0
-  maxHealth: 10
-  initialMaxHealh: 10
+  itemType: 8
+  rarity: 3
+  maxHealth: 30
+  initialMaxHealh: 30
   regenHealth: 0
   initialRegenHealth: 0
   attackDamage: 0
@@ -71,8 +71,8 @@ MonoBehaviour:
   initialCritDamage: 0
   lifeSteal: 0
   initialLifeSteal: 0
-  movementSpeed: 0.5
-  initialMovementSpeed: 0.5
+  movementSpeed: 1
+  initialMovementSpeed: 1
   dodgeChance: 0
   initialDodgeChance: 0
   luck: 0
@@ -126,7 +126,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 272b1cbeba3633d46a0e4b797dea1254, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 92dfa74ad5e7929459cd6e3de9ac11f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

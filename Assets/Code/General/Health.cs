@@ -78,6 +78,7 @@ public class Health : MonoBehaviour
         if (health > maxHealth)
         {
             health = maxHealth;
+            Event_UpdateHP.Invoke(health);
             return;
         }
         Event_UpdateHP.Invoke(health);

@@ -15,6 +15,8 @@ public enum ItemType
     Ring,
     Belt,
     Neck,
+    Gloves,
+    Cloak,
     Weapon
 }
 
@@ -151,7 +153,6 @@ public class GameManager : MonoBehaviour
     public void CloseShop()
     {
         shop.gameObject.SetActive(false);
-        Time.timeScale = 1;
         itemToHold = null;
     }
     

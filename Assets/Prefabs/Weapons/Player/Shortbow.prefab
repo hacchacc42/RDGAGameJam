@@ -47,24 +47,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15d27391964fb146909ae1a35a87bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerItem: 1
   image: {fileID: 1503354287, guid: d4822347c1450fc4f9a336da59010c12, type: 3}
-  itemName: Shortbow
   bonus: 
-  itemType: 7
+  itemType: 9
   rarity: 0
   maxHealth: 0
+  initialMaxHealh: 0
   regenHealth: 0
+  initialRegenHealth: 0
   attackDamage: 0
+  initialAttackDamage: 0
   damage: 25
+  initialDamage: 25
   projectileSpeed: 15
+  initialProjectileSpeed: 15
   attackSpeed: 0.3
+  initialAttackSpeed: 0.3
   range: 0.7
+  initialRange: 0.7
   critChance: 0
+  initialCritChance: 0
   critDamage: 0
+  initialCritDamage: 0
   lifeSteal: 0
+  initialLifeSteal: 0
   movementSpeed: 0
+  initialMovementSpeed: 0
   dodgeChance: 0
+  initialDodgeChance: 0
   luck: 0
+  initialLuck: 0
   prefab: {fileID: 2405032551919141211, guid: 820a97c3bcbe4fd4f9ca7f4d820efb4f, type: 3}
   throwParent: {fileID: 0}
   audioSource: {fileID: 1347792663322350437}

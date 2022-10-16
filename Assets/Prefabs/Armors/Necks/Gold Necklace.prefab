@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5194039219379788408}
   - component: {fileID: 8098139098106687709}
   m_Layer: 0
-  m_Name: Leather Boots
+  m_Name: Gold Necklace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,22 +47,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerItem: 1
-  image: {fileID: 21300000, guid: 272b1cbeba3633d46a0e4b797dea1254, type: 3}
+  image: {fileID: 21300000, guid: 87c2663586475164192421feb7ae41aa, type: 3}
   bonus: 
-  itemType: 3
-  rarity: 0
-  maxHealth: 10
-  initialMaxHealh: 10
-  regenHealth: 0
-  initialRegenHealth: 0
+  itemType: 6
+  rarity: 2
+  maxHealth: 15
+  initialMaxHealh: 15
+  regenHealth: 1
+  initialRegenHealth: 1
   attackDamage: 0
   initialAttackDamage: 0
   damage: 0
   initialDamage: 0
   projectileSpeed: 0
   initialProjectileSpeed: 0
-  attackSpeed: 0
-  initialAttackSpeed: 0
+  attackSpeed: 0.2
+  initialAttackSpeed: 0.2
   range: 0
   initialRange: 0
   critChance: 0
@@ -71,8 +71,8 @@ MonoBehaviour:
   initialCritDamage: 0
   lifeSteal: 0
   initialLifeSteal: 0
-  movementSpeed: 0.5
-  initialMovementSpeed: 0.5
+  movementSpeed: 0
+  initialMovementSpeed: 0
   dodgeChance: 0
   initialDodgeChance: 0
   luck: 0
@@ -126,7 +126,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 272b1cbeba3633d46a0e4b797dea1254, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3eaa8fa6dce21a846890a44b4961a91e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

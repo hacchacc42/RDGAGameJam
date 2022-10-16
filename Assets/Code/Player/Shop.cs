@@ -31,6 +31,7 @@ public class Shop : MonoBehaviour
 
     private void OnDisable()
     {
+        Time.timeScale = 1;
         changingWindow.SetActive(false);
     }
 

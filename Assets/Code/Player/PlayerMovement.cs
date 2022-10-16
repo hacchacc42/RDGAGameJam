@@ -89,6 +89,11 @@ public class PlayerMovement : MonoBehaviour
         stamina += Time.deltaTime/3.0f;
     }
 
+    public void UpdateMovementSpeed(float newMovementSpeed)
+    {
+        movementSpeed = newMovementSpeed;
+    }
+
     void CalculateStamina()
     {
         if (speedMultipler == runSpeedValue)

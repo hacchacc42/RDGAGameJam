@@ -16,6 +16,7 @@ public class ShopItems : MonoBehaviour
     {
         this.item = item;
         image.sprite = item.image;
+        item.SetBackgroundColor(GetComponent<Image>());
     }
 
     public void TryAddItem()

@@ -46,14 +46,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15d27391964fb146909ae1a35a87bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerItem: 0
   image: {fileID: -890294684, guid: d4822347c1450fc4f9a336da59010c12, type: 3}
+  bonus: 
+  itemType: 9
+  rarity: 0
+  maxHealth: 0
+  initialMaxHealh: 0
+  regenHealth: 0
+  initialRegenHealth: 0
+  attackDamage: 0
+  initialAttackDamage: 0
+  damage: 5
+  initialDamage: 5
+  projectileSpeed: 8
+  initialProjectileSpeed: 8
+  attackSpeed: 1.5
+  initialAttackSpeed: 1.5
+  range: 5
+  initialRange: 5
+  critChance: 0
+  initialCritChance: 0
+  critDamage: 0
+  initialCritDamage: 0
+  lifeSteal: 0
+  initialLifeSteal: 0
+  movementSpeed: 0
+  initialMovementSpeed: 0
+  dodgeChance: 0
+  initialDodgeChance: 0
+  luck: 0
+  initialLuck: 0
   prefab: {fileID: 2405032551919141211, guid: 5a3cd33f47fa2ee448abb938d6571c8e, type: 3}
   throwParent: {fileID: 0}
   audioSource: {fileID: -984765473405495075}
-  attackSpeed: 1.5
-  damage: 5
-  projectileSpeed: 8
-  range: 5
 --- !u!82 &-984765473405495075
 AudioSource:
   m_ObjectHideFlags: 0
