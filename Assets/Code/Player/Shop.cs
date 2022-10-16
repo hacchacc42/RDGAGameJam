@@ -41,7 +41,6 @@ public class Shop : MonoBehaviour
         {
             if (items[i].name==itemName)
             {
-                Debug.Log("Amongus");
                 return items[i];
             }
         }

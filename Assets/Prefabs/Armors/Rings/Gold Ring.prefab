@@ -61,8 +61,8 @@ MonoBehaviour:
   initialDamage: 0
   projectileSpeed: 0
   initialProjectileSpeed: 0
-  attackSpeed: 0.5
-  initialAttackSpeed: 0.5
+  attackSpeed: 0.2
+  initialAttackSpeed: 0.2
   range: 0
   initialRange: 0
   critChance: 0

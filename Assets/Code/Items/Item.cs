@@ -24,9 +24,6 @@ public class Item : MonoBehaviour
     int initialRegenHealth;
 
     [Header("Damage")]
-    public int attackDamage;
-    [SerializeField]
-    int initialAttackDamage;
     public int damage;
     [SerializeField]
     int initialDamage;
