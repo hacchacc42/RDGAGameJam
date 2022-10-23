@@ -1,20 +1,20 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-public class RoomFristPG : SimpleRandomWalkPG
+
+public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 {
     [SerializeField]
-    Vector2Int minRoomSize = new Vector2Int(4, 4);
+    private int minRoomWidth = 4, minRoomHeight = 4;
     [SerializeField]
-    Vector2Int dungeonSize = new Vector2Int(20, 20);
+    private int dungeonWidth = 20, dungeonHeight = 20;
     [SerializeField]
     [Range(0,10)]
-    int offset = 1;
+    private int offset = 1;
     [SerializeField]
-    bool randomWalkRooms = false;
-
+    private bool randomWalkRooms = false;
 
     protected override void RunProceduralGeneration()
     {
@@ -23,20 +23,22 @@ public class RoomFristPG : SimpleRandomWalkPG
 
     private void CreateRooms()
     {
-        var rooms = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
-            new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonSize.x, dungeonSize.y, 0)),
-            minRoomSize);
+        var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
+
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+
         if (randomWalkRooms)
         {
-            floor = CreateRoomsRandomly(rooms);
+            floor = CreateRoomsRandomly(roomsList);
         }
         else
         {
-            floor = CreateSimpleRooms(rooms);
+            floor = CreateSimpleRooms(roomsList);
         }
+        
+
         List<Vector2Int> roomCenters = new List<Vector2Int>();
-        foreach (var room in rooms)
+        foreach (var room in roomsList)
         {
             roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
         }
@@ -48,14 +50,32 @@ public class RoomFristPG : SimpleRandomWalkPG
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
     }
 
+    private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
+    {
+        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+        for (int i = 0; i < roomsList.Count; i++)
+        {
+            var roomBounds = roomsList[i];
+            var roomCenter = new Vector2Int(Mathf.RoundToInt(roomBounds.center.x), Mathf.RoundToInt(roomBounds.center.y));
+            var roomFloor = RunRandomWalk(randomWalkParameters, roomCenter);
+            foreach (var position in roomFloor)
+            {
+                if(position.x >= (roomBounds.xMin + offset) && position.x <= (roomBounds.xMax - offset) && position.y >= (roomBounds.yMin - offset) && position.y <= (roomBounds.yMax - offset))
+                {
+                    floor.Add(position);
+                }
+            }
+        }
+        return floor;
+    }
+
     private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)
     {
         HashSet<Vector2Int> corridors = new HashSet<Vector2Int>();
-
-        var currentRoomCenter = roomCenters[Random.Range(0,roomCenters.Count)];
+        var currentRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
         roomCenters.Remove(currentRoomCenter);
 
-        while(roomCenters.Count > 0)
+        while (roomCenters.Count > 0)
         {
             Vector2Int closest = FindClosestPointTo(currentRoomCenter, roomCenters);
             roomCenters.Remove(closest);
@@ -63,7 +83,6 @@ public class RoomFristPG : SimpleRandomWalkPG
             currentRoomCenter = closest;
             corridors.UnionWith(newCorridor);
         }
-
         return corridors;
     }
 
@@ -72,7 +91,7 @@ public class RoomFristPG : SimpleRandomWalkPG
         HashSet<Vector2Int> corridor = new HashSet<Vector2Int>();
         var position = currentRoomCenter;
         corridor.Add(position);
-        while(position.y != destination.y)
+        while (position.y != destination.y)
         {
             if(destination.y > position.y)
             {
@@ -89,14 +108,12 @@ public class RoomFristPG : SimpleRandomWalkPG
             if (destination.x > position.x)
             {
                 position += Vector2Int.right;
-            }
-            else if (destination.x < position.x)
+            }else if(destination.x < position.x)
             {
                 position += Vector2Int.left;
             }
             corridor.Add(position);
         }
-
         return corridor;
     }
 
@@ -104,58 +121,32 @@ public class RoomFristPG : SimpleRandomWalkPG
     {
         Vector2Int closest = Vector2Int.zero;
         float distance = float.MaxValue;
-
-        foreach(var roomPos in roomCenters)
+        foreach (var position in roomCenters)
         {
-            float currenDist = Vector2.Distance(currentRoomCenter, roomPos);
-            if(currenDist<distance)
+            float currentDistance = Vector2.Distance(position, currentRoomCenter);
+            if(currentDistance < distance)
             {
-                distance= currenDist;
-                closest = roomPos;
+                distance = currentDistance;
+                closest = position;
             }
         }
-
         return closest;
     }
 
-    private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> rooms)
+    private HashSet<Vector2Int> CreateSimpleRooms(List<BoundsInt> roomsList)
     {
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
-
-        foreach (var room in rooms)
-        {
-            var roomBounds = room;
-            var roomCenter = new Vector2Int(Mathf.RoundToInt(roomBounds.center.x), Mathf.RoundToInt(roomBounds.center.y));
-            var roomFloor = RunRandomWalk(randomWalkParameters, roomCenter);
-            foreach(var pos in roomFloor)
-            {
-                if (pos.x >= (roomBounds.xMin + offset) && pos.x <= (roomBounds.xMax - offset) &&
-                   pos.y >= (roomBounds.yMin + offset) && pos.y <= (roomBounds.yMax - offset))
-                {
-                    floor.Add(pos);
-                }
-            }
-        }
-
-        return floor;
-    }
-
-    private HashSet<Vector2Int> CreateSimpleRooms(List<BoundsInt> rooms)
-    {
-        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
-
-        foreach(var room in rooms)
+        foreach (var room in roomsList)
         {
             for (int col = offset; col < room.size.x - offset; col++)
             {
-                for(int row = offset; row < room.size.y - offset; row++)
+                for (int row = offset; row < room.size.y - offset; row++)
                 {
-                    Vector2Int pos = (Vector2Int)room.min + new Vector2Int(col, row);
-                    floor.Add(pos);
+                    Vector2Int position = (Vector2Int)room.min + new Vector2Int(col, row);
+                    floor.Add(position);
                 }
             }
         }
-
         return floor;
     }
 }

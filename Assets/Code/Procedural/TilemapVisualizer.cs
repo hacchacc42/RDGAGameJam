@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +26,7 @@ public class TilemapVisualizer : MonoBehaviour
     {
         int rand = Random.Range(0, 200);
         int tileChance = 1;
-        for(int i=1;i<9;i++)
+        for (int i = 1; i < 9; i++)
         {
             if (rand <= tileChance * i)
                 return 9 - i;
@@ -38,14 +38,14 @@ public class TilemapVisualizer : MonoBehaviour
     {
         foreach (var position in positions)
         {
-            PaintSingleTile(position, tilemap, tile,true);
+            PaintSingleTile(position, tilemap, tile, true);
         }
     }
 
     private void PaintSingleTile(Vector2Int position, Tilemap tilemap, TileBase tile, bool floor)
     {
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
-        if(floor)
+        if (floor)
             tile = floorTiles[GetFloorTile()];
         tilemap.SetTile(tilePosition, tile);
     }
@@ -56,8 +56,8 @@ public class TilemapVisualizer : MonoBehaviour
         wallTilemap.ClearAllTiles();
     }
 
-    internal void PaintBasicSingleWall(Vector2Int position)
+    internal void PaintSingleBasicWall(Vector2Int position)
     {
-        PaintSingleTile(position, wallTilemap, wallTile,false);
+        PaintSingleTile(position, wallTilemap, wallTile, false);
     }
 }
