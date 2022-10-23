@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2909735965481704623}
   - component: {fileID: 2142130046393845877}
   - component: {fileID: 3414615720910593877}
+  - component: {fileID: -3278206429074746746}
   m_Layer: 6
   m_Name: Zmeu
   m_TagString: Enemy
@@ -170,10 +171,18 @@ MonoBehaviour:
   Event_UpdateHP:
     m_PersistentCalls:
       m_Calls: []
+  Event_UpdateMaxHP:
+    m_PersistentCalls:
+      m_Calls: []
+  Event_Rip:
+    m_PersistentCalls:
+      m_Calls: []
   maxHealth: 400
   health: 0
   healthRegen: 1
   healthRegenTime: 0.2
+  luck: 0
+  dodgeChance: 5
 --- !u!95 &2909735965481704623
 Animator:
   serializedVersion: 4
@@ -310,6 +319,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3278206429074746746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582261432756520824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f116de9157354e45adfc5a888df571e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceGiving: 150
 --- !u!1 &2174198094652269271
 GameObject:
   m_ObjectHideFlags: 0

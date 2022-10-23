@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 2909735965481704623}
   - component: {fileID: 6320879164212665205}
   - component: {fileID: 7369778076882764982}
+  - component: {fileID: 8321517826952870183}
   m_Layer: 6
   m_Name: Taur
   m_TagString: Enemy
@@ -204,6 +205,9 @@ MonoBehaviour:
   Event_UpdateMaxHP:
     m_PersistentCalls:
       m_Calls: []
+  Event_Rip:
+    m_PersistentCalls:
+      m_Calls: []
   maxHealth: 600
   health: 0
   healthRegen: 2
@@ -242,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa285990f9ce1f4288be70c05f4a0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHp: 600
   healthComp: {fileID: 1582261432756520817}
   phase1: {fileID: 0}
   phase2: {fileID: 4130903924426280006}
@@ -346,6 +350,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8321517826952870183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582261432756520824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f116de9157354e45adfc5a888df571e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceGiving: 300
 --- !u!1 &4130903924426280006
 GameObject:
   m_ObjectHideFlags: 0

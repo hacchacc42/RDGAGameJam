@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3957212896349814715}
   - component: {fileID: 2199508141868412791}
   - component: {fileID: 7234086794004319251}
+  - component: {fileID: -4718188805740785499}
   m_Layer: 6
   m_Name: Baba
   m_TagString: Enemy
@@ -173,6 +174,9 @@ MonoBehaviour:
   Event_UpdateMaxHP:
     m_PersistentCalls:
       m_Calls: []
+  Event_Rip:
+    m_PersistentCalls:
+      m_Calls: []
   maxHealth: 1000
   health: 0
   healthRegen: 2
@@ -315,6 +319,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4718188805740785499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828380014082892908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f116de9157354e45adfc5a888df571e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceGiving: 600
 --- !u!1 &4059742625448814060
 GameObject:
   m_ObjectHideFlags: 0

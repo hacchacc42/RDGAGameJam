@@ -154,6 +154,7 @@ public class GameManager : MonoBehaviour
     {
         shop.gameObject.SetActive(false);
         itemToHold = null;
+        TooltipSystem.Hide();
     }
     
 
@@ -173,4 +174,5 @@ public class GameManager : MonoBehaviour
         bookMain.gameObject.SetActive(true);
         books[id].gameObject.SetActive(true);
     }
+
 }

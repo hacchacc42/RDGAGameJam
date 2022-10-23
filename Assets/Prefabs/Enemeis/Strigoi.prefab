@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1915839801777252110}
   - component: {fileID: 1915839801777252108}
   - component: {fileID: 2810889606370376914}
+  - component: {fileID: -2217583104368033565}
   m_Layer: 6
   m_Name: Strigoi
   m_TagString: Enemy
@@ -128,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 7
+  speedInit: 0
 --- !u!195 &1915839801777252110
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -165,8 +167,18 @@ MonoBehaviour:
   Event_UpdateHP:
     m_PersistentCalls:
       m_Calls: []
+  Event_UpdateMaxHP:
+    m_PersistentCalls:
+      m_Calls: []
+  Event_Rip:
+    m_PersistentCalls:
+      m_Calls: []
   maxHealth: 20
   health: 0
+  healthRegen: 0
+  healthRegenTime: 2
+  luck: 0
+  dodgeChance: 5
 --- !u!95 &2810889606370376914
 Animator:
   serializedVersion: 4
@@ -187,3 +199,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2217583104368033565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915839801777252101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f116de9157354e45adfc5a888df571e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceGiving: 20

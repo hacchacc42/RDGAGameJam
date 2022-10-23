@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
 {
     public myIntEvent Event_UpdateHP;
     public myIntEvent Event_UpdateMaxHP;
+    public UnityEvent Event_Rip;
     public int maxHealth = 100;
     [SerializeField]
     int health;
@@ -84,6 +85,7 @@ public class Health : MonoBehaviour
         Event_UpdateHP.Invoke(health);
         if (health <= 0)
         {
+            Event_Rip.Invoke();
             gameObject.SetActive(false);
         }
     }

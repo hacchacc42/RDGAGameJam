@@ -16,6 +16,7 @@ public class ShopItems : MonoBehaviour
     {
         this.item = item;
         image.sprite = item.image;
+        image.name = item.name;
         item.SetBackgroundColor(GetComponent<Image>());
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -7,9 +8,20 @@ public class Shop : MonoBehaviour
     [SerializeField]
     GameObject changingWindow;
     [SerializeField]
-    Item[] items;
-    [SerializeField]
     ShopItems[] shopItems;
+    [Header("Items Rarities")]
+    [SerializeField]
+    Item[] tutorialitems;
+    [SerializeField]
+    Item[] commonItems;
+    [SerializeField]
+    Item[] uncommonItems;
+    [SerializeField]
+    Item[] rareItems;
+    [SerializeField]
+    Item[] epicItems;
+    [SerializeField]
+    Item[] legendaryItems;
 
     private void OnEnable()
     {
@@ -21,7 +33,7 @@ public class Shop : MonoBehaviour
     {
         foreach(var shopItem in shopItems)
         {
-            shopItem.ReceiveItem(items[Random.Range(0, items.Length)]);
+            shopItem.ReceiveItem(PickRarityItem());
         }
     }
     public void InventoryFull()
@@ -35,9 +47,50 @@ public class Shop : MonoBehaviour
         changingWindow.SetActive(false);
     }
 
+    private Item PickRarityItem()
+    {
+        Item[] itemRarity = tutorialitems;
+        int playerLevel = GameManager.instance.GetComponent<PlayerLevel>().level;
+        if(playerLevel==1)
+        {
+            return itemRarity[Random.Range(0, itemRarity.Length)];
+        }
+        int luck = playerLevel + GameManager.instance.player.GetComponent<Stats>().luck;
+        float dropChance = Random.Range(1, 100.0f) / Mathf.Pow(1.01f,playerLevel) / Mathf.Pow(1.02f, luck);
+        if(dropChance<1.5f)
+        {
+            itemRarity = legendaryItems;
+        }
+        else if(dropChance<4)
+        {
+            itemRarity = epicItems;
+        }
+        else if(dropChance<12)
+        {
+            itemRarity = rareItems;
+        }
+        else if(dropChance<27)
+        {
+            itemRarity = uncommonItems;
+        }
+        else
+        {
+            itemRarity = commonItems;
+        }
+        return itemRarity[Random.Range(0, itemRarity.Length)];
+    }
+
     public Item GetItem(string itemName)
     {
-        for(int i=0; i < items.Length; i++)
+        var items = tutorialitems
+            .Concat(commonItems)
+            .Concat(uncommonItems)
+            .Concat(rareItems)
+            .Concat(epicItems)
+            .Concat(legendaryItems)
+            .ToArray();
+
+        for (int i=0; i < items.Length; i++)
         {
             if (items[i].name==itemName)
             {

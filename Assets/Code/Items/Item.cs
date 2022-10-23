@@ -8,8 +8,6 @@ public class Item : MonoBehaviour
     [SerializeField]
     bool playerItem = true;
     public Sprite image;
-    [TextArea]
-    public string bonus;
 
     public ItemType itemType;
     public Rarity rarity;

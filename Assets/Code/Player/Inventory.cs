@@ -118,7 +118,7 @@ public class Inventory : MonoBehaviour
         var item = GameManager.instance.itemToHold;
         playerStats.UpdateHealthValues(item.maxHealth,item.regenHealth);
         playerStats.UpdateUtilityValues(item.movementSpeed,item.dodgeChance,item.luck);
-        playerStats.UpdateDamageValues(item.attackDamage,item.attackSpeed,item.critChance,item.critDamage,item.lifeSteal);
+        playerStats.UpdateDamageValues(item.damage,item.attackSpeed,item.critChance,item.critDamage,item.lifeSteal);
         if (_targetImages[slot].enabled == true)
             RemoveItem(shop.GetItem(_targetImages[slot].name));
         ModifyItem(_targetImages[slot]);
@@ -128,7 +128,7 @@ public class Inventory : MonoBehaviour
     {
         playerStats.UpdateHealthValues(-item.maxHealth, -item.regenHealth);
         playerStats.UpdateUtilityValues(-item.movementSpeed, -item.dodgeChance, -item.luck);
-        playerStats.UpdateDamageValues(-item.attackDamage, -item.attackSpeed, -item.critChance, -item.critDamage, -item.lifeSteal);
+        playerStats.UpdateDamageValues(-item.damage, -item.attackSpeed, -item.critChance, -item.critDamage, -item.lifeSteal);
     }
 
     bool AddWeapon()
